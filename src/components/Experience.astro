@@ -1,0 +1,107 @@
+---
+import type { SiteContent } from '../content/site';
+
+type Props = {
+  content: SiteContent;
+};
+
+const { content } = Astro.props;
+---
+
+<section class="section experience" id="experience">
+  <div class="container">
+    <h2 class="section-title reveal">{content.experience.title}</h2>
+    <ol class="timeline">
+      {
+        content.experience.items.map((item) => (
+          <li class="job reveal">
+            <div class="job-meta">
+              <p class="job-period">{item.period}</p>
+              <p class="job-location">{item.location}</p>
+            </div>
+            <div class="job-body">
+              <h3 class="job-company">{item.company}</h3>
+              <p class="job-role">{item.role}</p>
+              <ul class="job-bullets">
+                {item.bullets.map((bullet) => (
+                  <li>{bullet}</li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  .job {
+    display: grid;
+    gap: 0.85rem;
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .job:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .job-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    color: var(--color-ink-muted);
+    font-size: 0.92rem;
+  }
+
+  .job-period {
+    font-weight: 600;
+    color: var(--color-accent-soft);
+  }
+
+  .job-company {
+    font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+    margin-bottom: 0.25rem;
+  }
+
+  .job-role {
+    font-weight: 500;
+    margin-bottom: 0.9rem;
+    color: var(--color-ink);
+  }
+
+  .job-bullets {
+    display: grid;
+    gap: 0.55rem;
+    color: var(--color-ink-muted);
+  }
+
+  .job-bullets li {
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  .job-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 0.35rem;
+    height: 1px;
+    background: var(--color-accent);
+  }
+
+  @media (min-width: 800px) {
+    .job {
+      grid-template-columns: 14rem 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

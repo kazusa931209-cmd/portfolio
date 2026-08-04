@@ -1,0 +1,78 @@
+---
+import type { Locale } from '../content/site';
+
+type Props = {
+  locale: Locale;
+};
+
+const { locale } = Astro.props;
+const enHref = '/';
+const jaHref = '/ja/';
+---
+
+<div class="lang-switch" data-lang-switch>
+  <a
+    class:list={['lang-link', { active: locale === 'en' }]}
+    href={enHref}
+    hreflang="en"
+    data-locale-path="/"
+    aria-current={locale === 'en' ? 'page' : undefined}>EN</a
+  >
+  <span class="sep" aria-hidden="true">/</span>
+  <a
+    class:list={['lang-link', { active: locale === 'ja' }]}
+    href={jaHref}
+    hreflang="ja"
+    data-locale-path="/ja/"
+    aria-current={locale === 'ja' ? 'page' : undefined}>JA</a
+  >
+</div>
+
+<script>
+  document.querySelectorAll('[data-lang-switch] a').forEach((anchor) => {
+    anchor.addEventListener('click', (event) => {
+      const target = event.currentTarget as HTMLAnchorElement;
+      const base = target.dataset.localePath;
+      if (!base) return;
+      const hash = window.location.hash;
+      if (hash) {
+        event.preventDefault();
+        window.location.href = `${base}${hash}`;
+      }
+    });
+  });
+</script>
+
+<style>
+  .lang-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .lang-link {
+    color: var(--color-ink-muted);
+    text-decoration: none;
+    padding: 0.15rem 0.1rem;
+    border-bottom: 1px solid transparent;
+    transition:
+      color 0.25s var(--ease-out),
+      border-color 0.25s var(--ease-out);
+  }
+
+  .lang-link:hover {
+    color: var(--color-ink);
+  }
+
+  .lang-link.active {
+    color: var(--color-ink);
+    border-bottom-color: var(--color-accent);
+  }
+
+  .sep {
+    color: var(--color-line);
+  }
+</style>

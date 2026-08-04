@@ -1,0 +1,41 @@
+# dependencies
+node_modules/
+
+# build
+dist/
+.astro/
+.vercel/
+.netlify/
+out/
+
+# env / secrets
+.env
+.env.*
+!.env.example
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+bun-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# editor / IDE
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# local / misc
+*.local
+.cache/
+coverage/
+tmp/
+temp/

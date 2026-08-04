@@ -1,0 +1,51 @@
+---
+import type { SiteContent } from '../content/site';
+
+type Props = {
+  content: SiteContent;
+};
+
+const { content } = Astro.props;
+---
+
+<section class="section skills" id="skills">
+  <div class="container">
+    <h2 class="section-title reveal">{content.skills.title}</h2>
+    <div class="skills-grid">
+      {
+        content.skills.groups.map((group) => (
+          <div class="skill-group reveal">
+            <h3 class="skill-label">{group.label}</h3>
+            <p class="skill-items">{group.items.join(' · ')}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills-grid {
+    display: grid;
+    gap: 1.75rem 2.5rem;
+  }
+
+  .skill-label {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.45rem;
+  }
+
+  .skill-items {
+    color: var(--color-ink-muted);
+    max-width: 36rem;
+    line-height: 1.7;
+  }
+
+  @media (min-width: 720px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

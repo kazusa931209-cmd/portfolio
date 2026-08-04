@@ -1,0 +1,42 @@
+---
+import type { SiteContent } from '../content/site';
+
+type Props = {
+  content: SiteContent;
+};
+
+const { content } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="footer-name">{content.hero.name}</p>
+    <p class="footer-copy">© {year} · {content.footer.rights}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-line);
+    padding-block: 2rem;
+    margin-top: var(--space-lg);
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+  }
+
+  .footer-name {
+    font-family: var(--font-display);
+    font-weight: 500;
+  }
+
+  .footer-copy {
+    color: var(--color-ink-muted);
+    font-size: 0.9rem;
+  }
+</style>

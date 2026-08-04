@@ -1,0 +1,28 @@
+---
+import type { SiteContent } from '../content/site';
+
+type Props = {
+  content: SiteContent;
+};
+
+const { content } = Astro.props;
+---
+
+<section class="section about" id="about">
+  <div class="container reveal">
+    <h2 class="section-title">{content.about.title}</h2>
+    <div class="about-body">
+      {content.about.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-body {
+    display: grid;
+    gap: 1.15rem;
+    max-width: 42rem;
+    color: var(--color-ink-muted);
+    font-size: 1.08rem;
+  }
+</style>
