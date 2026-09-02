@@ -1,12 +1,13 @@
 :root {
-  --color-ink: #1f1d1a;
-  --color-ink-muted: #5c574f;
-  --color-paper: #f2efe8;
-  --color-paper-deep: #e6e1d6;
-  --color-accent: #3d4f46;
-  --color-accent-soft: #5a6e63;
-  --color-line: rgba(31, 29, 26, 0.12);
-  --color-surface: rgba(255, 255, 255, 0.35);
+  --color-ink: #eef2f8;
+  --color-ink-muted: #9aa6b8;
+  --color-paper: #0a0e16;
+  --color-paper-deep: #070a10;
+  --color-accent: #5b8cff;
+  --color-accent-soft: #8aa8ff;
+  --color-line: rgba(238, 242, 248, 0.1);
+  --color-surface: rgba(255, 255, 255, 0.04);
+  --color-header: rgba(10, 14, 22, 0.78);
 
   --font-display: 'Fraunces', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
   --font-body: 'Source Sans 3', 'Hiragino Sans', 'Yu Gothic', sans-serif;
@@ -30,8 +31,10 @@
 }
 
 html {
+  color-scheme: dark;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 1rem);
+  background: var(--color-paper);
 }
 
 body {
@@ -42,9 +45,9 @@ body {
   font-size: 1.0625rem;
   line-height: 1.65;
   background:
-    radial-gradient(ellipse 120% 80% at 10% -10%, rgba(90, 110, 99, 0.12), transparent 50%),
-    radial-gradient(ellipse 90% 60% at 100% 0%, rgba(230, 225, 214, 0.9), transparent 45%),
-    linear-gradient(180deg, #f6f3ed 0%, var(--color-paper) 40%, var(--color-paper-deep) 100%);
+    radial-gradient(ellipse 120% 80% at 8% -8%, rgba(47, 107, 255, 0.16), transparent 52%),
+    radial-gradient(ellipse 80% 50% at 100% 8%, rgba(91, 140, 255, 0.08), transparent 48%),
+    linear-gradient(180deg, #0c111b 0%, var(--color-paper) 38%, var(--color-paper-deep) 100%);
   background-attachment: fixed;
 }
 
@@ -54,9 +57,14 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: 50;
-  opacity: 0.35;
+  opacity: 0.18;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
-  mix-blend-mode: multiply;
+  mix-blend-mode: overlay;
+}
+
+::selection {
+  background: rgba(91, 140, 255, 0.38);
+  color: #fff;
 }
 
 img {
@@ -73,7 +81,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-ink);
+  color: var(--color-accent-soft);
 }
 
 h1,

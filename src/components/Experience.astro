@@ -15,19 +15,17 @@ const { content } = Astro.props;
       {
         content.experience.items.map((item) => (
           <li class="job reveal">
+            <h3 class="job-company">{item.company}</h3>
+            <p class="job-role">{item.role}</p>
             <div class="job-meta">
               <p class="job-period">{item.period}</p>
               <p class="job-location">{item.location}</p>
             </div>
-            <div class="job-body">
-              <h3 class="job-company">{item.company}</h3>
-              <p class="job-role">{item.role}</p>
-              <ul class="job-bullets">
-                {item.bullets.map((bullet) => (
-                  <li>{bullet}</li>
-                ))}
-              </ul>
-            </div>
+            <ul class="job-bullets">
+              {item.bullets.map((bullet) => (
+                <li>{bullet}</li>
+              ))}
+            </ul>
           </li>
         ))
       }
@@ -42,8 +40,6 @@ const { content } = Astro.props;
   }
 
   .job {
-    display: grid;
-    gap: 0.85rem;
     padding-bottom: var(--space-lg);
     border-bottom: 1px solid var(--color-line);
   }
@@ -53,19 +49,6 @@ const { content } = Astro.props;
     padding-bottom: 0;
   }
 
-  .job-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1rem;
-    color: var(--color-ink-muted);
-    font-size: 0.92rem;
-  }
-
-  .job-period {
-    font-weight: 600;
-    color: var(--color-accent-soft);
-  }
-
   .job-company {
     font-size: clamp(1.35rem, 2.4vw, 1.7rem);
     margin-bottom: 0.25rem;
@@ -73,8 +56,22 @@ const { content } = Astro.props;
 
   .job-role {
     font-weight: 500;
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.4rem;
     color: var(--color-ink);
+  }
+
+  .job-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    margin-bottom: 0.95rem;
+    color: var(--color-ink-muted);
+    font-size: 0.92rem;
+  }
+
+  .job-period {
+    font-weight: 600;
+    color: var(--color-accent-soft);
   }
 
   .job-bullets {
@@ -98,10 +95,4 @@ const { content } = Astro.props;
     background: var(--color-accent);
   }
 
-  @media (min-width: 800px) {
-    .job {
-      grid-template-columns: 14rem 1fr;
-      gap: 2rem;
-    }
-  }
 </style>
